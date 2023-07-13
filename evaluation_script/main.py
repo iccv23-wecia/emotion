@@ -48,6 +48,7 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
     test_dict = {item: test_data[item] for item in test_data}
     ground_truth_dict = {item: ground_truth_data[item] for item in ground_truth_data}
     accuracy = hfeval.load("accuracy")
+    f1_score = hfeval.load("f1")
     test_emo = []
     ground_truth_emo = []
     emotions = set(test_dict.values()) | set(ground_truth_dict.values())
@@ -61,6 +62,11 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
             test_emo.append(-1)
         ground_truth_emo.append(emo2idx[ground_truth_emotion])
     acc = accuracy.compute(references=ground_truth_emo, predictions=test_emo)['accuracy']
+    try:
+        f1 = f1_score.compute(references=ground_truth_emo, predictions=test_emo,average="macro")['f1']
+        print(f1,"f1")
+    except:
+        print('F1 failed')
     output = {}
     if phase_codename == "dev":
         print("Evaluating for Dev Phase")
