@@ -1,7 +1,7 @@
 # If you are not sure what all these fields mean, please refer our documentation here:
 # https://evalai.readthedocs.io/en/latest/configuration.html
-title: WECIA - Emotion Prediction Challenge
-short_description: Emotion Prediction Challenge
+title: WECIA - Audio-based Emotion Prediction Challenge
+short_description: Audio-Emotion Prediction Challenge
 description: templates/description.html
 evaluation_details: templates/evaluation_details.html
 terms_and_conditions: templates/terms_and_conditions.html
