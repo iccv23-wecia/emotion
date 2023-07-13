@@ -62,18 +62,15 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
             test_emo.append(-1)
         ground_truth_emo.append(emo2idx[ground_truth_emotion])
     acc = accuracy.compute(references=ground_truth_emo, predictions=test_emo)['accuracy']
-    try:
-        f1 = f1_score.compute(references=ground_truth_emo, predictions=test_emo,average="macro")['f1']
-        print(f1,"f1")
-    except:
-        print('F1 failed')
+    f1 = f1_score.compute(references=ground_truth_emo, predictions=test_emo,average="macro")['f1']
+    print(f1,"f1")
     output = {}
     if phase_codename == "dev":
         print("Evaluating for Dev Phase")
         output["result"] = [
             {
                 "train_split": {
-                    "F1": acc,
+                    "F1": f1,
                     "Accuracy": acc,
                 }
             }
@@ -86,13 +83,13 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
         output["result"] = [
             {
                 "train_split": {
-                    "F1": acc,
+                    "F1": f1,
                     "Accuracy": acc,
                 }
             },
             {
                 "test_split": {
-                    "F1": acc,
+                    "F1": f1,
                     "Accuracy": acc,
                 }
             },
