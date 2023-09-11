@@ -24,11 +24,11 @@ leaderboard:
         "metadata": {
           "F1": {
             "sort_ascending": True,
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "description": "A higher score is better.",
           },
           "Accuracy": {
             "sort_ascending": True,
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "description": "A higher score is better.",
           }
         }
       }
